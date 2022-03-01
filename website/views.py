@@ -1,5 +1,6 @@
 from django.shortcuts import render
-
+from django.forms import modelform_factory
+from current.models import Russa, Aussie, TENS, FES, ITP, IBP, Microcorrente, Polarizada, CPAV
 # Create your views here.
 
 def welcome(request):
