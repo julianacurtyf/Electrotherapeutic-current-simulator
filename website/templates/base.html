@@ -1,0 +1,108 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <link href="{% static 'website/style.css' %}" rel="stylesheet">
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="header-nav">
+    <div class="flex space-between container">
+      <!-- BRANDING -->
+      <div class="flex align-center brand">
+        <a href="#">
+          {% load static %}<img class="logo" src="{% static 'website/img/logo.png' %}">
+        </a>
+      </div>
+      <!-- SEARCH -->
+      <div class="flex flex-one align-center">
+        <div>
+          <form>
+            <input class="search-box" aria-label="Search" placeholder="What would you like to watch?" type="search">
+            <button class="search-button" type="submit">SEARCH</button>
+          </form>
+          <ul class="flex space-between nav-list">
+            <li><a href="{% url 'home' client.id %}">Home</a></li>
+            <li><a href="{% url 'movies' client.id %}">Movies</a></li>
+            <li><a href="{% url 'tvshows' client.id %}">TV Show</a></li>
+            <li><a href="{% url 'courses' client.id %}">Courses</a></li>
+          </ul>
+        </div>
+        <!-- PROFILE -->
+        <div class="flex align-center profile">
+          <div class="flex flex-column account">
+            {{client.name}} {{client.surname}}
+            <a href="#">Log Out</a>
+          </div>
+          <div class="profile-pic">{% load static %}<img src="{% static 'website/img/user4.png' %}"></div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+    {% block content %}
+    {% endblock %}
+ <!-- FOOTER -->
+  <footer>
+    <section class="space-between container lists">
+      <div class="links">
+        <div class="text-primary link-header">Customer Support</div>
+        <ul>
+          <li><a href="#">Audio and Subtitles</a></li>
+          <li><a href="#">Gift Cards</a></li>
+          <li><a href="#">Students</a></li>
+        </ul>
+      </div>
+      <div class="links">
+        <div class="text-primary link-header">Company Info</div>
+        <ul>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Media Center</a></li>
+          <li><a href="#">Privacy</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="text-primary link-header">Privacy &amp; Terms</div>
+        <ul>
+          <li><a href="#">Privacy &amp; Security</a></li>
+          <li><a href="#">Statement</a></li>
+          <li><a href="#">Terms &amp; Conditions</a></li>
+        </ul>
+      </div>
+      <div class="social">
+        <div class="text-primary link-header">Follow Us</div>
+        <ul>
+          <li><a class="twitter" href="#">
+            {% load static %}<img src="{% static 'website/img/twitter.svg' %}">
+          </a></li>
+          <li><a class="facebook" href="#">
+            {% load static %}<img src="{% static 'website/img/facebook.svg' %}">
+          </a></li>
+          <li><a class="instagram" href="#">
+            {% load static %}<img src="{% static 'website/img/instagram.svg' %}">
+          </a></li>
+        </ul>
+        <div class="newsletter">
+          <div class="link-header">Email Updates</div>
+          <input class="form-control" type="text" placeholder="Enter email address" />
+          <button class="btn btn-primary">Sign up</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PS DEMO -->
+    <section class="ps">
+      <div class="flex flex-column align-center">
+        <div class="demo">This site, unfortunately, is created for demonstrative purposes for a university course and does not offer any real products or services.</div>
+      </div>
+    </section>
+
+    <div class="text-primary copyright">&copy; Juliana Curty 2022</div>
+  </footer>
+</body>
+</html>
+
