@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        var russa = "russa";
+        var aussie = "aussie";
+    </script>
+    <meta charset="UTF-8">
+    <title>"Simulação de correntes em eletroterapia"</title>
+</head>
+<body>
+    <h1>Simulação de correntes em eletroterapia</h1>
+    <ul>
+        <li>
+            <a
+                href="{% url 'current' 'russa' %}">
+                Corrente Russa
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="{% url 'current' 'aussie' %}">
+                Corrente Aussie
+            </a>
+        </li>
+        <li>
+            <a
+                href="{% url 'current' 'TENS' %}">
+                Corrente TENS
+            </a>
+        </li>
+        <li>
+            <a
+                href="{% url 'current' 'FES' %}">
+                Corrente FES
+            </a>
+        </li>
+        <li>
+            <a
+                href="{% url 'current' 'ITP' %}">
+                Corrente ITP
+            </a>
+        </li>
+        <li>
+            <a
+                href="{% url 'current' 'IBP' %}">
+                Corrente IBP
+            </a>
+        </li>
+        <li>
+            <a
+                href="{% url 'current' 'microcorrente' %}">
+                Microcorrente
+            </a>
+        </li>
+        <li>
+            <a
+                href="{% url 'current' 'polarizada' %}">
+                Corrente polarizada
+            </a>
+        </li>
+        <li>
+            <a
+                href="{% url 'current' 'CPAV' %}">
+                Corrente CPAV
+            </a>
+        </li>
+    </ul>
+</body>
+</html>

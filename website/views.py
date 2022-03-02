@@ -18,7 +18,33 @@ CPAVForm = modelform_factory(CPAV,exclude=[])
 
 def current(request, nome):
 
-    return render(request, 'website/current.html')
+    if nome == 'russa':
+        form = RussaForm
+    elif nome == 'aussie':
+        form = AussieForm
+
+    elif nome == 'TENS':
+        form = TENSForm
+
+    elif nome == 'FES':
+        form = FESForm
+
+    elif nome == 'ITP':
+        form = ITPForm
+
+    elif nome == 'IBP':
+        form = IBPForm
+
+    elif nome == 'microcorrente':
+        form = MicrocorrenteForm
+
+    elif nome == 'polarizada':
+        form = PolarizadaForm
+
+    else:
+        form = CPAVForm
+
+    return render(request, 'website/current.html', {"form": form, "nome": nome})
 
 def login(request, nome):
 
