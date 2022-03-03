@@ -1,71 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <script>
-        var russa = "russa";
-        var aussie = "aussie";
-    </script>
-    <meta charset="UTF-8">
-    <title>"Simulação de correntes em eletroterapia"</title>
-</head>
-<body>
-    <h1>Simulação de correntes em eletroterapia</h1>
-    <ul>
-        <li>
-            <a
-                href="{% url 'current' 'russa' %}">
-                Corrente Russa
-            </a>
-        </li>
+{% extends "base.html" %}
 
-        <li>
-            <a
-                href="{% url 'current' 'aussie' %}">
-                Corrente Aussie
-            </a>
-        </li>
-        <li>
-            <a
-                href="{% url 'current' 'TENS' %}">
-                Corrente TENS
-            </a>
-        </li>
-        <li>
-            <a
-                href="{% url 'current' 'FES' %}">
-                Corrente FES
-            </a>
-        </li>
-        <li>
-            <a
-                href="{% url 'current' 'ITP' %}">
-                Corrente ITP
-            </a>
-        </li>
-        <li>
-            <a
-                href="{% url 'current' 'IBP' %}">
-                Corrente IBP
-            </a>
-        </li>
-        <li>
-            <a
-                href="{% url 'current' 'microcorrente' %}">
-                Microcorrente
-            </a>
-        </li>
-        <li>
-            <a
-                href="{% url 'current' 'polarizada' %}">
-                Corrente polarizada
-            </a>
-        </li>
-        <li>
-            <a
-                href="{% url 'current' 'CPAV' %}">
-                Corrente CPAV
-            </a>
-        </li>
-    </ul>
-</body>
-</html>
+{% block title %}Eletroterapia{% endblock %}
+
+{% block content %}
+
+<!-- MAIN CONTAINER -->
+<div class="container">
+    <section>
+        <div class="text-dark flex align-center center">
+            Simulação de correntes em eletroterapia
+        </div>
+    </section>
+    <!-- SALE BANNER -->
+
+    <section>
+        <div class="flex align-center center banner">
+            <div class="banner-text category">
+                <div class="text-light"><a href="{% url 'current' 'russa' %}">Corrente Russa</a></div>
+            </div>
+            <div class="banner-text category">
+                <div class="text-light"><a href="{% url 'current' 'aussie' %}">Corrente Aussie</a></div>
+            </div>
+            <div class="banner-text category">
+                <div class="text-light"><a href="{% url 'current' 'TENS' %}">Corrente TENS</a></div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="flex align-center center banner">
+        <div class="banner-text category">
+            <div class="text-light"><a href="{% url 'current' 'FES' %}">Corrente FES</a></div>
+        </div>
+        <div class="banner-text category">
+            <div class="text-light"><a href="{% url 'current' 'ITP' %}">Corrente ITP</a></div>
+        </div>
+        <div class="banner-text category">
+            <div class="text-light"><a href="{% url 'current' 'IBP' %}">Corrente IBP</a></div>
+        </div>
+    </div>
+    </section>
+    <section>
+        <div class="flex align-center center banner">
+            <div class="banner-text category">
+                <div class="text-light"><a href="{% url 'current' 'microcorrente' %}">Microcorrente</a></div>
+            </div>
+            <div class="banner-text category">
+                <div class="text-light"><a href="{% url 'current' 'polarizada' %}">Corrente polarizada</a></div>
+            </div>
+            <div class="banner-text category">
+                <div class="text-light"><a href="{% url 'current' 'CPAV' %}">Corrente CPAV</a></div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+
+{% endblock %}

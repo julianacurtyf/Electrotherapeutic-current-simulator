@@ -21,23 +21,20 @@
       <div class="flex flex-one align-center">
         <div>
           <form>
-            <input class="search-box" aria-label="Search" placeholder="What would you like to watch?" type="search">
-            <button class="search-button" type="submit">SEARCH</button>
+            <input class="search-box" aria-label="Search" placeholder="Qual corrente você gostaria de simular?" type="Pesquisar">
+            <button class="search-button" type="submit">PESQUISAR</button>
           </form>
           <ul class="flex space-between nav-list">
-            <li><a href="{% url 'home' client.id %}">Home</a></li>
-            <li><a href="{% url 'movies' client.id %}">Movies</a></li>
-            <li><a href="{% url 'tvshows' client.id %}">TV Show</a></li>
-            <li><a href="{% url 'courses' client.id %}">Courses</a></li>
+            
           </ul>
         </div>
         <!-- PROFILE -->
         <div class="flex align-center profile">
           <div class="flex flex-column account">
             {{client.name}} {{client.surname}}
-            <a href="#">Log Out</a>
+            <a href="#">Sair</a>
           </div>
-          <div class="profile-pic">{% load static %}<img src="{% static 'website/img/user4.png' %}"></div>
+          <div class="profile-pic">{% load static %}<img src="{% static 'website/img/user4.jpg' %}"></div>
         </div>
       </div>
     </div>
@@ -50,31 +47,31 @@
   <footer>
     <section class="space-between container lists">
       <div class="links">
-        <div class="text-primary link-header">Customer Support</div>
+        <div class="text-primary link-header">Suporte ao Consumidor</div>
         <ul>
-          <li><a href="#">Audio and Subtitles</a></li>
-          <li><a href="#">Gift Cards</a></li>
-          <li><a href="#">Students</a></li>
+          <li><a href="#">1</a></li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
         </ul>
       </div>
       <div class="links">
-        <div class="text-primary link-header">Company Info</div>
+        <div class="text-primary link-header">Sobre nós</div>
         <ul>
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">Media Center</a></li>
-          <li><a href="#">Privacy</a></li>
+          <li><a href="#">1</a></li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
         </ul>
       </div>
       <div>
-        <div class="text-primary link-header">Privacy &amp; Terms</div>
+        <div class="text-primary link-header">Privacidade &amp; Termos</div>
         <ul>
-          <li><a href="#">Privacy &amp; Security</a></li>
-          <li><a href="#">Statement</a></li>
-          <li><a href="#">Terms &amp; Conditions</a></li>
+          <li><a href="#">1</a></li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
         </ul>
       </div>
       <div class="social">
-        <div class="text-primary link-header">Follow Us</div>
+        <div class="text-primary link-header">Redes sociais</div>
         <ul>
           <li><a class="twitter" href="#">
             {% load static %}<img src="{% static 'website/img/twitter.svg' %}">
@@ -87,9 +84,9 @@
           </a></li>
         </ul>
         <div class="newsletter">
-          <div class="link-header">Email Updates</div>
-          <input class="form-control" type="text" placeholder="Enter email address" />
-          <button class="btn btn-primary">Sign up</button>
+          <div class="link-header">Email</div>
+          <input class="form-control" type="text" placeholder="Digite seu email aqui" />
+          <button class="btn btn-primary">Cadastre-se</button>
         </div>
       </div>
     </section>
@@ -97,11 +94,11 @@
     <!-- PS DEMO -->
     <section class="ps">
       <div class="flex flex-column align-center">
-        <div class="demo">This site, unfortunately, is created for demonstrative purposes for a university course and does not offer any real products or services.</div>
+        <div class="demo">Considerações finais do site</div>
       </div>
     </section>
 
-    <div class="text-primary copyright">&copy; Juliana Curty 2022</div>
+    <div class="text-primary copyright">&copy; JulianaCurty&amp;RafaelMolter 2022</div>
   </footer>
 </body>
 </html>
