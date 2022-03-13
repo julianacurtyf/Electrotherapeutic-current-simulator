@@ -25,7 +25,7 @@ class Current(models.Model):
          array
              a array that corresponds to the value of the current on time
         """
-        t = np.arange(0, self.timer * 60, 10e-6)
+        t = self.get_t()
         sinusoidalWave = self.intensity * np.sin(2 * np.pi * carrier * t)
 
         return sinusoidalWave
@@ -43,7 +43,7 @@ class Current(models.Model):
         array
             a array that corresponds to the value of the current on time
        """
-        t = np.arange(0, self.timer * 60, 10e-6)
+        t = self.get_t()
         squareWave = self.intensity * signal.square(2 * np.pi * carrier * t, duty=0.5)
 
         return squareWave
@@ -61,7 +61,7 @@ class Current(models.Model):
         array
             a array that corresponds to the value of the current on time
        """
-        t = np.arange(0, self.timer * 60, 10e-6)
+        t = self.get_t()
         triangularWave = self.intensity * signal.sawtooth(2 * np.pi * carrier * t, 0.5)
 
         return triangularWave
@@ -86,7 +86,7 @@ class Current(models.Model):
             a array that corresponds to the value of the ramp during the treatment
        """
 
-        t = np.arange(0, self.timer * 60, 10e-6)
+        t = self.get_t()
         time = np.arange(0, rise, 1e-5)
         riseRamp = 0.5 * signal.sawtooth(2 * np.pi * time / rise) + 0.5
 
@@ -120,11 +120,14 @@ class Current(models.Model):
         array
             a array that corresponds to the value of the ramp during the treatment
         """
-        t = np.arange(0, self.timer * 60, 10e-6)
+        t = self.get_t()
         burst = (0.5 * signal.square(2 * np.pi * frequency * t, duty=duty) + 0.5)
 
         return burst
 
+    def get_t(self,p=10e-6):
+        t = np.arange(0, self.timer * 60, p)
+        return t
 
 class Russa(Current):
     burst_hz = models.FloatField()
@@ -263,7 +266,7 @@ class ITP(Current):
         array
             a array that corresponds to the value of the current on time
        """
-        t = np.arange(0, self.timer * 60, 10e-6)
+        t = self.get_t()
         sinusoidalWave = self.intensity * np.sin(2 * np.pi * ((self.carrier + self.AMF) * t + self.sweep_mode()))
 
         return sinusoidalWave
@@ -277,7 +280,7 @@ class ITP(Current):
         array
             a array that corresponds to the value of the frequency on time
        """
-        t = np.arange(0, self.timer * 60, 10e-6)
+        t = self.get_t()
         sweep_vector = self.sweep_hz * np.ones(len(t))
         if self.sweep_s == 1:
             return self.ramp(1, 0, 1, 0) * sweep_vector
@@ -327,7 +330,7 @@ class IBP(Current):
         array
             a array that corresponds to the value of the current on time
        """
-        t = np.arange(0, self.timer * 60, 10e-6)
+        t = self.get_t()
         sinusoidalWave = self.intensity * np.sin(2 * np.pi * ((self.carrier + self.AMF) * t + self.sweep_mode()))
 
         return sinusoidalWave
@@ -341,7 +344,7 @@ class IBP(Current):
         array
             a array that corresponds to the value of the frequency on time
        """
-        t = np.arange(0, self.timer * 60, 10e-6)
+        t = self.get_t()
         sweep_vector = self.sweep_hz * np.ones(len(t))
         if self.sweep_s == 1:
             return self.ramp(1, 0, 1, 0) * sweep_vector
@@ -381,7 +384,7 @@ class Microcorrente(Current):
         array
             a array that corresponds to the value of the current on time
        """
-        t = np.arange(0, self.timer * 60, 10e-6)
+        t = self.get_t()
         self.freq_alt = 1 / 3;
         alt = signal.square(2 * np.pi * self.freq_alt * t, duty=0.5)
 
@@ -427,7 +430,7 @@ class Polarizada(Current):
             a array that corresponds to the value of the current during the treatment
         """
         self.carrier = 15000
-        t = np.arange(0, self.timer * 60, 10e-8)
+        t = self.get_t(10e-8)
         sinusoidal = self.intensity * np.sin(2 * np.pi * self.carrier * t)
         if self.polo == "P+":
             return abs(sinusoidal)
