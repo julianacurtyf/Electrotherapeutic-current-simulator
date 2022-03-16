@@ -75,7 +75,7 @@ def current(request, nome):
 
     return render(request, 'website/current.html', {"form": form, "nome": nome,
                                                     "description": current_description.get(nome),
-                                                    "figure": figure})
+                                                    "figure": 'aa'})
 
 def login(request, nome):
 
