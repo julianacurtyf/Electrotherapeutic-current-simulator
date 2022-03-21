@@ -67,15 +67,10 @@ def current(request, nome):
             corrente = form.save()
             t = corrente.get_t()
             wave = corrente.wave()
-            subplot = figure.add_subplot(111)
-            subplot.grid()
-            subplot.plot(t, wave)
 
-            #return redirect("welcome")
 
     return render(request, 'website/current.html', {"form": form, "nome": nome,
-                                                    "description": current_description.get(nome),
-                                                    "figure": 'aa'})
+                                                    "description": current_description.get(nome)})
 
 def login(request, nome):
 

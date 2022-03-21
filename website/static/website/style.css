@@ -63,6 +63,10 @@ section {
 .btn-primary {
     color:#fff;
     background-color: #364147;
+    margin: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 16px;
 }
 
 .form-control {
@@ -80,6 +84,13 @@ section {
     margin: 5px;
     border-top: 1px solid #a0a0a0;
     border-bottom: 1px solid #a0a0a0;
+}
+
+.text-description {
+    font-size: 20px;
+    color: #071E3D;
+    padding: 25px;
+    margin: 5px;
 }
 
 .text-secondary {
