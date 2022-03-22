@@ -41,7 +41,7 @@
         // Step 1
         var data = JSON.parse("{{data|escapejs}}");
 
-        const result = Object.keys(data).length * 1e-6
+        const result = Object.keys(data).length * 1e-5
 
         console.log(data);
 
@@ -97,7 +97,7 @@
             .attr("transform", "translate(" + 100 + "," + 100 + ")")
             .attr("d", line)
             .style("fill", "none")
-            .style("stroke", "#CC0000")
+            .style("stroke", "#1F4287")
             .style("stroke-width", "2");
 
     </script>

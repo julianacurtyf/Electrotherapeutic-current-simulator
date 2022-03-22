@@ -126,7 +126,7 @@ class Current(models.Model):
         return burst
 
     def get_t(self,p=10e-6):
-        t = np.arange(0, self.timer * 60, p)
+        t = np.arange(0, self.timer, p)
         return t
 
 class Russa(Current):
@@ -236,7 +236,7 @@ class FES(Current):
         array
             a array that corresponds to the value of the current during the treatment
         """
-        self.duty = 2 * self.fase * self.carrier
+        self.duty = 2 * self.fase * self.carrier * 1e-6
         return self.square(1 / (2 * self.fase)) * self.burst(self.carrier, self.duty) * self.ramp(self.rise, self.on,
                                                                                                   self.decay, self.off)
 
