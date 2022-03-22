@@ -23,7 +23,7 @@
                 <div style="padding: 20px">Escolha os parâmetros da corrente:</div>
             </div>
             <div class="flex center banner-text ">
-                <form method="post">
+                <form action="" method="post">
                     <table>
                         {{form}}
                     </table>
@@ -38,70 +38,68 @@
     </section>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script>
-            // Step 1
-            var dataset1 = [
-                [1,1], [1.2,2], [2.4,3.6],
-                [3.2, 5.0], [4.0, 7.0], [5.0, 10.0],
-                [5.5, 10.6], [6.5, 12.3], [7.3, 13.0],
-                [7.8, 13.4], [8.3, 13.6], [8.9, 13.8],
-                [10.0, 14.0]
-            ];
-    
-            // Step 3
-            var svg = d3.select("svg"),
-                margin = 200,
-                width = svg.attr("width") - margin, //300
-                height = svg.attr("height") - margin //200
-    
-            // Step 4 
-            var xScale = d3.scaleLinear().domain([0, 10]).range([0, width]),
-                yScale = d3.scaleLinear().domain([-20, 20]).range([height, 0]);
-                
-            var g = svg.append("g")
-                .attr("transform", "translate(" + 100 + "," + 100 + ")");
-    
-            // Step 5
-            
-            // X label
-            svg.append('text')
-            .attr('x', width/2 + 100)
+        // Step 1
+        var data = JSON.parse("{{data|escapejs}}");
+
+        const result = Object.keys(data).length * 1e-6
+
+        console.log(data);
+
+        // Step 3
+        var svg = d3.select("svg"),
+            margin = 200,
+            width = svg.attr("width") - margin, //300
+            height = svg.attr("height") - margin //200
+
+        // Step 4 
+        var xScale = d3.scaleLinear().domain([0, result]).range([0, width]),
+            yScale = d3.scaleLinear().domain([-140, 140]).range([height, 0]);
+
+        var g = svg.append("g")
+            .attr("transform", "translate(" + 100 + "," + 100 + ")");
+
+        // Step 5
+
+        // X label
+        svg.append('text')
+            .attr('x', width / 2 + 100)
             .attr('y', height - 15 + 150)
             .attr('text-anchor', 'middle')
             .style('font-family', 'Helvetica')
             .style('font-size', 12)
-            .text('Tempo (μs)');
-            
-            // Y label
-            svg.append('text')
+            .text('Tempo (s)');
+
+        // Y label
+        svg.append('text')
             .attr('text-anchor', 'middle')
-            .attr('transform', 'translate(60,' + height/1.2 + ')rotate(-90)')
+            .attr('transform', 'translate(60,' + height / 1.2 + ')rotate(-90)')
             .style('font-family', 'Helvetica')
             .style('font-size', 12)
             .text('Amplitude (mA)');
-    
-            // Step 6
-            g.append("g")
-             .attr("transform", "translate(0," + height/2 + ")")
-             .call(d3.axisBottom(xScale));
-            
-            g.append("g")
-             .call(d3.axisLeft(yScale));
-            
-            // Step 8        
-            var line = d3.line()
-            .x(function(d) { return xScale(d[0]); }) 
-            .y(function(d) { return yScale(d[1]); }) 
+
+        // Step 6
+        g.append("g")
+            .attr("transform", "translate(0," + height / 2 + ")")
+            .call(d3.axisBottom(xScale));
+
+        g.append("g")
+            .call(d3.axisLeft(yScale));
+
+        // Step 8        
+        var line = d3.line()
+            .x(function (d) { return xScale(d.t); })
+            .y(function (d) { return yScale(d.wave); })
             .curve(d3.curveMonotoneX)
-            
-            svg.append("path")
-            .datum(dataset1) 
-            .attr("class", "line") 
+
+        svg.append("path")
+            .datum(data)
+            .attr("class", "line")
             .attr("transform", "translate(" + 100 + "," + 100 + ")")
             .attr("d", line)
             .style("fill", "none")
             .style("stroke", "#CC0000")
             .style("stroke-width", "2");
-      
+
     </script>
 
 

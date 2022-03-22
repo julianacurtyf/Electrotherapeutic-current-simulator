@@ -1,11 +1,10 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.forms import modelform_factory
-from matplotlib.figure import Figure
+from json import dumps
 
 from current.models import Russa, Aussie, TENS, FES, ITP, IBP, Microcorrente, Polarizada, CPAV
 from current import textos
-import matplotlib.pyplot as plt
 
 # Create your views here.
 
@@ -34,9 +33,9 @@ current_description = {"TENS": textos.TENS,
 
 def current(request, nome):
 
-    figure = Figure(figsize=[10, 1], facecolor="white", tight_layout=True)
     if nome == 'russa':
         form = RussaForm
+
     elif nome == 'aussie':
         form = AussieForm
 
@@ -67,10 +66,21 @@ def current(request, nome):
             corrente = form.save()
             t = corrente.get_t()
             wave = corrente.wave()
-
-
-    return render(request, 'website/current.html', {"form": form, "nome": nome,
-                                                    "description": current_description.get(nome)})
+            values = []
+            for i in range(len(t)):
+                data = {'t': t[i],
+                        'wave': wave[i]}
+                print(data)
+                values.append(data)
+            
+            dataJSON = dumps(values)
+            return render(request, 'website/current.html', {"form": form, "nome": nome,
+                                                            "description": current_description.get(nome),
+                                                            "data": dataJSON,
+                                                            "wave": wave})
+    else:
+        return render(request, 'website/current.html', {"form": form, "nome": nome,
+                                                            "description": current_description.get(nome)})
 
 def login(request, nome):
 
