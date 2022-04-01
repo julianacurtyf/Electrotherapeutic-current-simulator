@@ -1,24 +1,35 @@
 # Electrotherapy
 
-Collaborating
-===============================
-    git checkout -b <branch name>   # start a new branch
-    # or you can use the command below if the branch already exists
-    #git checkout --track origin/<branch name>   # enter an already existing branch
-    git branch   # check you are in the right branch
-    <edit files>
-    git add <edited file>
-    git commit -m "message describing what you did!"
-    git push origin <branch name>
+## Setup
+
+The first thing to do is to clone the repository:
+
+```sh
+$ git clone https://github.com/julianacurtyf/Electrotherapy.git
+$ cd Electrotherapy
+```
+
+Create a virtual environment to install dependencies in and activate it:
+
+```sh
+$ virtualenv2 --no-site-packages env
+$ source env/bin/activate
+```
+
+Then install the dependencies:
+
+```sh
+(env)$ pip install -r requirements.txt
+```
+Note the `(env)` in front of the prompt. This indicates that this terminal
+session operates in a virtual environment set up by `virtualenv2`.
+
+Once `pip` has finished downloading the dependencies:
+```sh
+(env)$ cd project
+(env)$ python manage.py runserver
+```
+And navigate to `http://127.0.0.1:8000/`.
 
 
-Project Organization MUDAR
-------------
 
-    ├── README.md          <- The top-level README for developers using this project.
-    │
-    ├── models             <- Trained and serialized models, model predictions, or model summaries.
-    │
-    ├── notebooks          <- Jupyter notebooks.
-    │
-    └── project            <- HTML and CSS files which creates the physiological data monitoring application.
