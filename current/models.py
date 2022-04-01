@@ -6,8 +6,6 @@ from scipy import signal
 class Current(models.Model):
     intensity = models.FloatField()
     carrier = models.FloatField()
-    timer = models.FloatField()
-    #t = np.arange(0, self.timer * 60, 10e-6)
 
     class Meta:
         abstract = True
@@ -85,7 +83,7 @@ class Current(models.Model):
         array
             a array that corresponds to the value of the ramp during the treatment
        """
-
+        timer = 2
         t = self.get_t()
         time = np.arange(0, rise, 1e-5)
         riseRamp = 0.5 * signal.sawtooth(2 * np.pi * time / rise) + 0.5
@@ -99,7 +97,7 @@ class Current(models.Model):
 
         ramp = list(riseRamp) + list(np.ones(len(time_const))) + list(decayRamp) + list(np.zeros(len(time_off)))
 
-        resized_ramp = np.array(ramp * (int(self.timer * 60 / (on + off + rise + decay) + 1)))
+        resized_ramp = np.array(ramp * (int(timer * 60 / (on + off + rise + decay) + 1)))
 
         resized_ramp = resized_ramp[:len(t)]
 
@@ -126,7 +124,8 @@ class Current(models.Model):
         return burst
 
     def get_t(self,p=10e-6):
-        t = np.arange(0, self.timer, p)
+        timer = 10 * 1/self.carrier
+        t = np.arange(0, timer, p)
         return t
 
 class Russa(Current):
@@ -145,7 +144,9 @@ class Russa(Current):
         array
             a array that corresponds to the value of the current during the treatment
         """
-        return self.sinusoidal(self.carrier) * self.burst(self.burst_hz, self.duty) * self.ramp(self.rise, self.on,
+        carrier = 2.5e3 
+        self.duty = self.duty/100
+        return self.sinusoidal(carrier) * self.burst(self.burst_hz, self.duty) * self.ramp(self.rise, self.on,
                                                                                                 self.decay, self.off)
 
     def __str__(self):
@@ -170,8 +171,8 @@ class Aussie(Current):
         array
             a array that corresponds to the value of the current during the treatment
         """
-        self.duty = self.burst_ms * self.burst_hz
-        return self.sinusoidal(self.carrier) * self.burst(self.burst_hz, self.duty) * self.ramp(self.rise, self.on,
+        duty = self.burst_ms * self.burst_hz * 1e-3
+        return self.sinusoidal(self.carrier) * self.burst(self.burst_hz, duty) * self.ramp(self.rise, self.on,
                                                                                                 self.decay, self.off)
 
     def __str__(self):
