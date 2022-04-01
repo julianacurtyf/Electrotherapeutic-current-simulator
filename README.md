@@ -53,4 +53,4 @@ After choosing that current, you will be redirectionated to the page above, wher
 
 ## Technologies
 
-The project was developed mainly using Django (Python), aswell as html, css and javascript for the website template. For the graph, we used a javascript library named d3.js ("https://d3js.org/d3.v7.min.js").
+The project was developed mainly using Django (Python), aswell as html, css and javascript for the website template. For the graph, we used a javascript library named d3.js (https://d3js.org/d3.v7.min.js).
