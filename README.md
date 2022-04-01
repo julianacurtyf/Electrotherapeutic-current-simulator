@@ -51,3 +51,6 @@ After choosing that current, you will be redirectionated to the page above, wher
 ![image](https://user-images.githubusercontent.com/93845875/161306097-0fb4a486-f7ed-47c4-be62-71e496c79c09.png)
 
 
+## Technologies
+
+The project was developed mainly using Django (Python), aswell as html, css and javascript for the website template. For the graph, we used a javascript library named d3.js ("https://d3js.org/d3.v7.min.js").
