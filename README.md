@@ -1,4 +1,4 @@
-# Electrotherapy
+# Electrotherapeutic current simulator
 
 ## Setup
 
