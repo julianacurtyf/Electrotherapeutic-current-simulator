@@ -5,8 +5,8 @@
 The first thing to do is to clone the repository:
 
 ```sh
-$ git clone https://github.com/julianacurtyf/Electrotherapy.git
-$ cd Electrotherapy
+$ git clone https://github.com/julianacurtyf/Electrotherapeutic-current-simulator.git
+$ cd Electrotherapeutic-current-simulator
 ```
 
 Create a virtual environment to install dependencies in and activate it:
